@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 DATABASE STRUCTURE REPORT
 Generated: 11/25/2025 7:57:10 PM
-================================================================================
+--------------------------------------------------------------------------------
 
 TABLE: ~TMPCLP148681
 --------------------------------------------------
@@ -523,7 +523,7 @@ FIELDS:
   ZIPCode	Text	20	ZIP/Postal code of the supplier.
   City	Text	50	City where the supplier is located.
   Country	Text	50	Country where the supplier is based.
-  VATNumber	Text	50	Supplier’s VAT identification number.
+  VATNumber	Text	50	Supplierï¿½s VAT identification number.
   Email	Text	100	Supplier contact email address.
   Telephone	Text	50	Supplier contact telephone number.
   PaymentTerms	Text	100	Agreed payment terms with the supplier.
