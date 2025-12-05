@@ -1,0 +1,598 @@
+--------------------------------------------------------------------------------
+DATABASE STRUCTURE REPORT
+Generated: 11/25/2025 7:57:10 PM
+================================================================================
+
+TABLE: ~TMPCLP148681
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ServiceID	AutoNumber	4	
+  ServiceNumber	Text	20	
+  ServiceDate	Date/Time	8	
+  ClientID	Long Integer	4	
+  SupplierID	Long Integer	4	
+  LoadingName	Text	100	
+  LoadingAddress	Text	255	
+  LoadingZIP	Text	20	
+  LoadingCity	Text	50	
+  LoadingCountry	Text	50	
+  LoadingTime	Text	5	
+  LoadingContact	Text	100	
+  UnloadingName	Text	100	
+  UnloadingAddress	Text	255	
+  UnloadingZIP	Text	20	
+  UnloadingCity	Text	50	
+  UnloadingCountry	Text	50	
+  UnloadingTime	Text	5	
+  UnloadingContact	Text	100	
+  DriverName	Text	100	
+  Registration	Text	50	
+  Reference	Text	255	
+  LoadingArea	Text	255	
+  DownloadSite	Text	255	
+  Observations	Text	200	
+  Kilometers	Double	8	
+  PricePerKm	Double	8	
+  Extras	Double	8	
+  TotalCost	Double	8	
+  Sale	Double	8	
+  Margin	Double	8	
+  ServiceStatus	Text	20	
+  IsArchived	Yes/No	1	
+  IRPFRateAtService	Double	8	
+  IsDeleted	Yes/No	1	
+  CreatedBy	Long Integer	4	
+  CreatedDate	Date/Time	8	
+  ModifiedBy	Long Integer	4	
+  ModifiedDate	Date/Time	8	
+  CompletedDate	Date/Time	8	
+  CompletedBy	Long Integer	4	
+
+PRIMARY KEY:
+  ServiceID
+
+INDEXES:
+  Index: idxServiceArchived | Unique=False | Required=False
+      Field: IsArchived
+  Index: idxServiceDate | Unique=False | Required=False
+      Field: ServiceDate
+  Index: idxServiceNumber | Unique=True | Required=False
+      Field: ServiceNumber
+  Index: idxServiceStatus | Unique=False | Required=False
+      Field: ServiceStatus
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ~TMPCLP157431
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  InvoiceID	AutoNumber	4	
+  InvoiceNumber	Text	20	
+  SupplierID	Long Integer	4	
+  InvoiceDate	Date/Time	8	
+  DateRangeFrom	Date/Time	8	
+  DateRangeTo	Date/Time	8	
+  Subtotal	Double	8	
+  VATAmount	Double	8	
+  IRPFAmount	Double	8	
+  TotalAmount	Double	8	
+  InvoiceStatus	Text	20	
+  ReplacementForInvoiceID	Long Integer	4	
+  PDFFilePath	Text	255	
+  IsDeleted	Yes/No	1	
+  CreatedBy	Long Integer	4	
+  CreatedDate	Date/Time	8	
+  ModifiedBy	Long Integer	4	
+  ModifiedDate	Date/Time	8	
+  FinalizedDate	Date/Time	8	
+  FinalizedBy	Long Integer	4	
+
+PRIMARY KEY:
+  InvoiceID
+
+INDEXES:
+  Index: idxInvoiceDate | Unique=False | Required=False
+      Field: InvoiceDate
+  Index: idxInvoiceNumber | Unique=True | Required=False
+      Field: InvoiceNumber
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ~TMPCLP163051
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ClientID	AutoNumber	4	
+  ClientName	Text	100	
+  Address	Text	255	
+  VATNumber	Text	50	
+  EmailBilling	Text	100	
+  EmailTraffic	Text	100	
+  Country	Text	50	
+  Telephone	Text	50	
+  PaymentTerms	Text	100	
+  VATApplied	Yes/No	1	
+  BankAccount	Text	50	
+  BankDetails	Text	255	
+  IsDeleted	Yes/No	1	
+  CreatedBy	Long Integer	4	
+  CreatedDate	Date/Time	8	
+  ModifiedBy	Long Integer	4	
+  ModifiedDate	Date/Time	8	
+
+PRIMARY KEY:
+  ClientID
+
+INDEXES:
+  Index: idxClientName | Unique=False | Required=False
+      Field: ClientName
+  Index: idxClientVAT | Unique=True | Required=False
+      Field: VATNumber
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ~TMPCLP163052
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  InvoiceLineID	AutoNumber	4	
+  InvoiceID	Long Integer	4	
+  ServiceID	Long Integer	4	
+  LineAmount	Double	8	
+  CreatedDate	Date/Time	8	
+
+PRIMARY KEY:
+  InvoiceLineID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ~TMPCLP40711
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ErrorID	AutoNumber	4	
+  ErrorNumber	Long Integer	4	
+  ErrorDescription	Text	255	
+  ErrorSource	Text	100	
+  ErrorLine	Long Integer	4	
+  UserID	Long Integer	4	
+  ErrorDate	Date/Time	8	
+  WorkstationName	Text	50	
+  AdditionalInfo	Memo	0	
+
+PRIMARY KEY:
+  ErrorID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ~TMPCLP40712
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  CompanyID	AutoNumber	4	
+  CompanyName	Text	100	
+  Address	Text	255	
+  City	Text	50	
+  PostalCode	Text	20	
+  Country	Text	50	
+  Telephone	Text	50	
+  Email	Text	100	
+  VATNumber	Text	50	
+  BankAccount	Text	50	
+  BankDetails	Text	255	
+  LogoPath	Text	255	
+  ModifiedBy	Long Integer	4	
+  ModifiedDate	Date/Time	8	
+
+PRIMARY KEY:
+  CompanyID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: AuditLog
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  AuditID	AutoNumber	4	Unique audit log entry identifier.
+  TableName	Text	50	Name of the table affected.
+  RecordID	Long Integer	4	Identifier of the affected record.
+  FieldName	Text	50	Name of the modified field.
+  OldValue	Memo	0	Value before the change.
+  NewValue	Memo	0	Value after the change.
+  ActionType	Text	20	Type of action (Insert, Update, Delete).
+  PerformedBy	Long Integer	4	User who performed the action.
+  PerformedDate	Date/Time	8	Timestamp when the action occurred.
+  WorkstationName	Text	50	Name of the workstation used.
+
+PRIMARY KEY:
+  AuditID
+
+INDEXES:
+  Index: idxAuditRecord | Unique=False | Required=False
+      Field: RecordID
+  Index: idxAuditTable | Unique=False | Required=False
+      Field: TableName
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: Clients
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ClientID	AutoNumber	4	Unique client identifier.
+  ClientName	Text	100	Legal name of the client.
+  ContactName	Text	100	Primary contact person for the client.
+  AddressLine	Text	255	Street address of the client.
+  ZIPCode	Text	20	ZIP/Postal code of the client.
+  City	Text	50	City where the client is located.
+  Country	Text	50	Client country.
+  VATNumber	Text	50	Client VAT identification number.
+  EmailBilling	Text	100	Email used for invoicing.
+  EmailTraffic	Text	100	Email used for logistics/traffic communication.
+  Telephone	Text	50	Client telephone number.
+  PaymentTerms	Text	100	Agreed payment terms.
+  VATApplied	Yes/No	1	Indicates whether VAT applies.
+  BankAccount	Text	50	Client bank account number.
+  BankDetails	Text	255	Additional client bank details.
+  IsDeleted	Yes/No	1	Indicates logical deletion.
+  CreatedBy	Long Integer	4	User ID who created record.
+  CreatedDate	Date/Time	8	Record creation date.
+  ModifiedBy	Long Integer	4	User ID who modified record.
+  ModifiedDate	Date/Time	8	Last modification date.
+
+PRIMARY KEY:
+  ClientID
+
+INDEXES:
+  Index: idxClientName | Unique=False | Required=False
+      Field: ClientName
+  Index: idxClientVAT | Unique=True | Required=False
+      Field: VATNumber
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: CompanyInfo
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  CompanyID	AutoNumber	4	Unique company identifier.
+  CompanyName	Text	100	Name of the company.
+  Address	Text	255	Company address.
+  City	Text	50	City of the company address.
+  PostalCode	Text	20	Postal/ZIP code.
+  Country	Text	50	Country of the company.
+  Telephone	Text	50	Company telephone number.
+  Email	Text	100	Company email address.
+  VATNumber	Text	50	Company VAT identification number.
+  BankAccount	Text	50	Company bank account.
+  BankDetails	Text	255	Additional bank information.
+  LogoPath	Text	255	Path to the company logo file.
+  ModifiedBy	Long Integer	4	User ID who modified the record.
+  ModifiedDate	Date/Time	8	Last modification date.
+
+PRIMARY KEY:
+  CompanyID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: ErrorLog
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ErrorID	AutoNumber	4	Unique error log entry.
+  ErrorNumber	Long Integer	4	Error number raised by the system.
+  ErrorDescription	Text	255	Description of the error.
+  ErrorSource	Text	100	Source procedure or module.
+  ErrorLine	Long Integer	4	Line number where error occurred.
+  UserID	Long Integer	4	User associated with the error.
+  ErrorDate	Date/Time	8	Date/time of the error.
+  WorkstationName	Text	50	Name of the workstation.
+  AdditionalInfo	Memo	0	Detailed error information.
+
+PRIMARY KEY:
+  ErrorID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: InvoiceLines
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  InvoiceLineID	AutoNumber	4	Unique identifier for the invoice line.
+  InvoiceID	Long Integer	4	Invoice to which the line belongs.
+  ServiceID	Long Integer	4	Service associated with this invoice line.
+  LineAmount	Double	8	Amount billed for the line.
+  CreatedDate	Date/Time	8	Date the invoice line was created.
+
+PRIMARY KEY:
+  InvoiceLineID
+
+INDEXES:
+  Index: InvoiceLinesInvoices | Unique=False | Required=False
+      Field: InvoiceID
+  Index: InvoiceLinesServices | Unique=False | Required=False
+      Field: ServiceID
+
+RELATIONSHIPS:
+  FK: InvoiceLinesInvoices ? Invoices
+      InvoiceID ? InvoiceID
+  FK: InvoiceLinesServices ? Services
+      ServiceID ? ServiceID
+--------------------------------------------------
+
+TABLE: Invoices
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  InvoiceID	AutoNumber	4	Unique identifier for the invoice.
+  InvoiceNumber	Text	20	Assigned or sequential invoice number.
+  SupplierID	Long Integer	4	Supplier billing the invoice.
+  InvoiceDate	Date/Time	8	Date the invoice was issued.
+  DateRangeFrom	Date/Time	8	Start of the service period covered by the invoice.
+  DateRangeTo	Date/Time	8	End of the service period covered by the invoice.
+  Subtotal	Double	8	Invoice amount before taxes.
+  VATAmount	Double	8	Value-added tax amount.
+  IRPFAmount	Double	8	IRPF withholding amount.
+  TotalAmount	Double	8	Total payable invoice amount.
+  InvoiceStatus	Text	20	Current status of the invoice.
+  ReplacementForInvoiceID	Long Integer	4	Invoice replaced by this one (if corrective).
+  PDFFilePath	Text	255	File system path to the stored PDF.
+  IsDeleted	Yes/No	1	Indicates whether the record is logically deleted.
+  CreatedBy	Long Integer	4	User ID who created the invoice.
+  CreatedDate	Date/Time	8	Date the invoice was created.
+  ModifiedBy	Long Integer	4	User ID who modified the invoice.
+  ModifiedDate	Date/Time	8	Date the invoice was last modified.
+  FinalizedDate	Date/Time	8	Date the invoice was finalized.
+  FinalizedBy	Long Integer	4	User ID who finalized the invoice.
+
+PRIMARY KEY:
+  InvoiceID
+
+INDEXES:
+  Index: idxInvoiceDate | Unique=False | Required=False
+      Field: InvoiceDate
+  Index: idxInvoiceNumber | Unique=True | Required=False
+      Field: InvoiceNumber
+  Index: InvoicesSuppliers | Unique=False | Required=False
+      Field: SupplierID
+
+RELATIONSHIPS:
+  FK: InvoicesSuppliers ? Suppliers
+      SupplierID ? SupplierID
+--------------------------------------------------
+
+TABLE: RolePermissions
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  PermissionID	AutoNumber	4	
+  Role	Text	255	
+  Permission	Text	255	
+  Allowed	Yes/No	1	
+  Notes	Text	255	
+
+PRIMARY KEY:
+  PermissionID
+
+INDEXES:
+  Index: PermissionID | Unique=False | Required=False
+      Field: PermissionID
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: Services
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ServiceID	AutoNumber	4	Unique identifier for the service record.
+  ServiceNumber	Text	20	Sequential or assigned number for the service.
+  ServiceDate	Date/Time	8	Date when the service was performed or created.
+  ClientID	Long Integer	4	Identifier of the client receiving the service.
+  SupplierID	Long Integer	4	Identifier of the supplier assigned to the service.
+  LoadingName	Text	100	Name of the loading location.
+  LoadingAddress	Text	255	Address of the loading location.
+  LoadingZIP	Text	20	ZIP/postal code of the loading point.
+  LoadingCity	Text	50	City where loading takes place.
+  LoadingCountry	Text	50	Country of the loading location.
+  LoadingTime	Text	5	Scheduled loading time.
+  LoadingContact	Text	100	Contact person at the loading location.
+  UnloadingName	Text	100	Name of the unloading location.
+  UnloadingAddress	Text	255	Address of the unloading location.
+  UnloadingZIP	Text	20	ZIP/postal code of the unloading point.
+  UnloadingCity	Text	50	City where unloading occurs.
+  UnloadingCountry	Text	50	Country of the unloading location.
+  UnloadingTime	Text	5	Scheduled unloading time.
+  UnloadingContact	Text	100	Contact person at the unloading location.
+  DriverName	Text	100	Name of the assigned driver.
+  Registration	Text	50	Vehicle registration/license plate number.
+  Reference	Text	255	Internal or external reference related to the service.
+  LoadingArea	Text	255	Area or zone where loading occurs.
+  DownloadSite	Text	255	Site or location where goods are unloaded.
+  Observations	Text	200	Additional comments or special instructions.
+  Kilometers	Double	8	Distance traveled for the service.
+  PricePerKm	Double	8	Rate applied per kilometer.
+  Extras	Double	8	Additional charges.
+  TotalCost	Double	8	Total cost of the service.
+  Sale	Double	8	Sale price charged to the client.
+  Margin	Double	8	Profit margin for the service.
+  ServiceStatus	Text	20	Current status of the service.
+  IsArchived	Yes/No	1	Indicates whether the service is archived.
+  IRPFRateAtService	Double	8	IRPF rate applied at the time of service.
+  IsDeleted	Yes/No	1	Indicates whether the record is logically deleted.
+  CreatedBy	Long Integer	4	User ID who created the record.
+  CreatedDate	Date/Time	8	Date when the record was created.
+  ModifiedBy	Long Integer	4	User ID who last modified the record.
+  ModifiedDate	Date/Time	8	Date when the record was last modified.
+  CompletedDate	Date/Time	8	Date the service was marked completed.
+  CompletedBy	Long Integer	4	User ID who completed the service.
+
+PRIMARY KEY:
+  ServiceID
+
+INDEXES:
+  Index: idxServiceArchived | Unique=False | Required=False
+      Field: IsArchived
+  Index: idxServiceDate | Unique=False | Required=False
+      Field: ServiceDate
+  Index: idxServiceNumber | Unique=True | Required=False
+      Field: ServiceNumber
+  Index: idxServiceStatus | Unique=False | Required=False
+      Field: ServiceStatus
+  Index: ServicesClients | Unique=False | Required=False
+      Field: ClientID
+  Index: ServicesSuppliers | Unique=False | Required=False
+      Field: SupplierID
+
+RELATIONSHIPS:
+  FK: ServicesClients ? Clients
+      ClientID ? ClientID
+  FK: ServicesSuppliers ? Suppliers
+      SupplierID ? SupplierID
+--------------------------------------------------
+
+TABLE: ServiceTypes
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  ServiceTypeID	AutoNumber	4	Unique identifier for the service type.
+  ServiceTypeName	Text	255	Name of the service type
+  CreatedBy	Long Integer	4	User ID who created the service type.
+  CreatedDate	Date/Time	8	Date the invoice was created.
+  ModifiedBy	Long Integer	4	User ID who modified the service type.
+  ModifiedDate	Date/Time	8	Date the service type was last modified.
+
+PRIMARY KEY:
+  ServiceTypeID
+
+INDEXES:
+  Index: ServiceTypeID | Unique=False | Required=False
+      Field: ServiceTypeID
+  Index: ServiceTypeName | Unique=True | Required=False
+      Field: ServiceTypeName
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: Suppliers
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  SupplierID	AutoNumber	4	Unique identifier for the supplier.
+  SupplierName	Text	100	Full legal name of the supplier.
+  ContactName	Text	100	Primary contact person for the supplier.
+  AddressLine	Text	255	Street address of the supplier.
+  ZIPCode	Text	20	ZIP/Postal code of the supplier.
+  City	Text	50	City where the supplier is located.
+  Country	Text	50	Country where the supplier is based.
+  VATNumber	Text	50	Supplier’s VAT identification number.
+  Email	Text	100	Supplier contact email address.
+  Telephone	Text	50	Supplier contact telephone number.
+  PaymentTerms	Text	100	Agreed payment terms with the supplier.
+  IRPFPercentage	Double	8	Applied IRPF withholding percentage.
+  TypeOfServices	Text	100	Description of services provided.
+  VATApplied	Yes/No	1	Indicates whether VAT is applied to invoices.
+  BankAccount	Text	50	Supplier bank account number.
+  BankDetails	Text	255	Additional bank or payment details.
+  IsDeleted	Yes/No	1	Indicates whether the record is logically deleted.
+  CreatedBy	Long Integer	4	User ID who created the record.
+  CreatedDate	Date/Time	8	Date and time when the record was created.
+  ModifiedBy	Long Integer	4	User ID who last modified the record.
+  ModifiedDate	Date/Time	8	Date and time when the record was last modified.
+
+PRIMARY KEY:
+  SupplierID
+
+INDEXES:
+  Index: idxSupplierName | Unique=False | Required=False
+      Field: SupplierName
+  Index: idxSupplierVAT | Unique=True | Required=False
+      Field: VATNumber
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: SystemSettings
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  SettingID	AutoNumber	4	Unique identifier for the system setting.
+  SettingName	Text	50	Name of the setting.
+  SettingValue	Text	255	Value assigned to the setting.
+  SettingDescription	Text	255	Details about what the setting controls.
+  ModifiedBy	Long Integer	4	User ID who modified the setting.
+  ModifiedDate	Date/Time	8	Date the setting was last modified.
+
+PRIMARY KEY:
+  SettingID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+
+TABLE: Users
+--------------------------------------------------
+FIELDS:
+  Name        Type          Size          Description
+  ----        ----          ----          -----------
+  UserID	AutoNumber	4	Unique system user identifier.
+  Username	Text	50	Login username.
+  FullName	Text	100	User's full name.
+  Role	Text	20	Assigned system role.
+  IsActive	Yes/No	1	Indicates whether the user is active.
+  CreatedDate	Date/Time	8	Date the user account was created.
+  LastLoginDate	Date/Time	8	Last time the user logged in.
+  PasswordHash	Text	255	Encrypted password.
+  FailedLoginAttempts	Long Integer	4	Number of failed login attempts.
+  LockoutUntil	Date/Time	8	Date/time until account is locked.
+  PasswordSetDate	Date/Time	8	Last date password was set.
+  MustChangePassword	Yes/No	1	Requires password change on next login.
+
+PRIMARY KEY:
+  UserID
+
+INDEXES:
+
+RELATIONSHIPS:
+--------------------------------------------------
+--------------------------------------------------------------------------------
